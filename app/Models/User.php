@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
+
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -28,10 +29,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-            // Relasi: 1 User memiliki banyak (hasMany) Items
+    }
+
+    // Relasi: 1 User memiliki banyak Items
     public function items()
     {
         return $this->hasMany(Item::class, 'users_id');
-    }
     }
 }
